@@ -173,7 +173,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/detail/detail.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/detail/detail.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -254,8 +254,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/components/detail/detail.component.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app/components/detail/detail.component.ts:29</a></div>
                 </td>
             </tr>
 
@@ -297,10 +297,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/components/detail/detail.component.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/detail/detail.component.ts:14</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>snapshot route parámetro enviado desde la lista de hits hacia el detalle.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -324,10 +330,16 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/components/detail/detail.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/detail/detail.component.ts:18</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>variable que guarda la lista del detalle de la imágen o hit.</p>
+</div>
+                    </td>
+                </tr>
 
             </tbody>
         </table>
@@ -347,16 +359,29 @@ import { DataService } from &#x27;../../services/data.service&#x27;;
   styleUrls: [&#x27;./detail.component.scss&#x27;]
 })
 export class DetailComponent implements OnInit {
+  /**
+    * snapshot route parámetro enviado desde la lista de hits hacia el detalle.
+  */
   idImage: string
+  /**
+    * variable que guarda la lista del detalle de la imágen o hit.
+  */
   itemImage: any
 
- 
+
   constructor(private route: ActivatedRoute, private dataService: DataService) {
+    /**
+    * variable que guarda el id de la imágen.
+    */
     this.idImage &#x3D; this.route.snapshot.paramMap.get(&#x27;id&#x27;)
   }
 
 
   ngOnInit(): void {
+    /**
+    * llamado a el servicio de detalle de el hit o imágen, con su parámetro 
+    * @param {string} idImage.
+    */
     this.dataService.getDetailImage(this.idImage)
     this.itemImage &#x3D; this.dataService.singleHit;
   }

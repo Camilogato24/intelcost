@@ -12,10 +12,25 @@ interface ImagesData {
 })
 
 export class DataService {
+  /**
+    * Observable que muestra todos los hits o imágenes.
+  */
   private _hits = new BehaviorSubject<any[]>([]);
+   /**
+    * Observable que muestra el detalle de los hits o imágenes.
+  */
   private _singleHit = new BehaviorSubject<any[]>([]);
+   /**
+    *  Variable que arma el ENDPOINT.
+  */
   private baseUrl = 'https://pixabay.com/api/?key=13119377-fc7e10c6305a7de49da6ecb25&lang=es&image_type=photo';
+  /**
+    * array para la data de los hits o imágenes.
+  */
   private dataImages: { hitsImages: any[] } = { hitsImages: [] }
+  /**
+    * array para la data de los detalles del hit o imagen.
+  */
   private dataImage: { singleImage: any[] } = { singleImage: [] }
   readonly hits = this._hits.asObservable();
   readonly singleHit = this._singleHit.asObservable();
@@ -52,7 +67,6 @@ export class DataService {
 
     )
     return this.dataImages.hitsImages
-    // return this.http.get('https://pixabay.com/api/?key=13119377-fc7e10c6305a7de49da6ecb25&lang=es&image_type=photo')
   }
 
   /**
@@ -87,6 +101,24 @@ export class DataService {
       )
     return this.dataImages.hitsImages
   }
+
+  /**
+   * Método que permite buscar imágenes por su categoria, en el evento toggle
+   */
+  toggleCategory(category: string) {
+    this.http.get(`${this.baseUrl}&category=${category}`)
+      .subscribe(
+        (data: ImagesData) => {
+          this.dataImages.hitsImages = data.hits
+          this._hits.next(Object.assign({}, this.dataImages).hitsImages);
+
+        },
+        error => console.log('No hay imágenes.')
+
+      )
+    return this.dataImages.hitsImages
+  }
+
   /**
    * Método que permite obtener el detalle de una imagen, por medio de un ID.
    */

@@ -10,7 +10,7 @@
     <main role="main" class="inner cover">
         <h1 class="cover-heading">Buscador de imágenes.</h1>
         <div class="input-group mb-3">
-            <div  ngbDropdown class="d-inline-block">
+            <div  ngbDropdown class="d-inline-block" (openChange)="methodToggle(selectedValue.value)">
                 <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>{{ selectedValue.value || 'Categoría'}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" #selectedValue>
                     <button 

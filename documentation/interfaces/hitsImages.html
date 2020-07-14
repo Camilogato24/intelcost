@@ -64,6 +64,13 @@
             <code>src/app/components/list/list.component.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>interface o clase de los hits o imágenes detalle.</p>
+
+            </p>
 
 
         <section>
@@ -836,12 +843,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { DataService } from &#x27;../../services/data.service&#x27;;
-
+/**
+  * interface o clase del array de respuesta del observable principal.
+  */
 interface ImagesData {
   hits: any[];
   total: number;
   totalHits: number;
 }
+/**
+  * interface o clase de los hits o imágenes detalle.
+  */
 interface hitsImages {
   comments?: number
   downloads?: number
@@ -873,31 +885,60 @@ interface hitsImages {
   styleUrls: [&#x27;./list.component.scss&#x27;]
 })
 export class ListComponent implements OnInit {
-  // listImages: hitsImages[] &#x3D; [];
+  /**
+  * variable que interpola los valores de la búsqueda de imágenes.
+  */
   searchItem: string
+  /**
+  * variable que muestra los valores del observable del servicio de imágenes.
+  */
   listImages: any;
+  /**
+  * Array del dropdown de categorias.
+  */
   categoryImage: any[] &#x3D; [
-    {name: &#x27;science&#x27;},
-    {name: &#x27;education&#x27;},
-    {name: &#x27;people&#x27;},
-    {name: &#x27;feelings&#x27;},
-    {name: &#x27;computer&#x27;},
-    {name: &#x27;buildings&#x27;},
+    { name: &#x27;science&#x27; },
+    { name: &#x27;education&#x27; },
+    { name: &#x27;people&#x27; },
+    { name: &#x27;feelings&#x27; },
+    { name: &#x27;computer&#x27; },
+    { name: &#x27;buildings&#x27; },
   ]
+  /**
+  * variable que guarda los valores preseleccionados del dropdown de categoria.
+  */
   categoryItem: string;
+  /**
+  * variable que guarda todos los valores seleccionados en el dropdown de categoria.
+  */
   selectedValue: string;
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    /**
+    * función que llama la lista completa de imágenes.
+    */
     this.dataService.getList()
     this.listImages &#x3D; this.dataService.listImage;
-    
-  }
 
-  searchImages(item, categoryItem){
+  }
+  /**
+    * Método que se dispara cuando buscas en el input, con el criterio q&#x3D;&quot;$string&quot;, y category.
+   */
+  searchImages(item, categoryItem) {
     console.log(item, categoryItem)
     this.dataService.searchImages(item, categoryItem);
     this.listImages &#x3D; this.dataService.listImage
+  }
+
+  /**
+   * Método que se dispara cuando abres o cierras el Dropdown de categoria y busca por ese mismo criterio.
+  */
+  methodToggle(categoryItem) {
+    console.log(&quot;oli&quot;, categoryItem)
+    this.dataService.toggleCategory(categoryItem)
+    this.listImages &#x3D; this.dataService.listImage
+    this.searchItem &#x3D; &#x27;&#x27;
   }
 
 }
