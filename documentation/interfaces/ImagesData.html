@@ -61,9 +61,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/data.service.ts</code>
+            <code>src/app/components/list/list.component.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>interface o clase del array de respuesta del observable principal.</p>
+
+            </p>
 
 
         <section>
@@ -190,143 +197,106 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { tap, map, filter } from &#x27;rxjs/operators&#x27;;
-import { BehaviorSubject } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { DataService } from &#x27;../../services/data.service&#x27;;
+/**
+  * interface o clase del array de respuesta del observable principal.
+  */
 interface ImagesData {
   hits: any[];
   total: number;
   totalHits: number;
 }
-@Injectable({
-  providedIn: &#x27;root&#x27;
+/**
+  * interface o clase de los hits o imágenes detalle.
+  */
+interface hitsImages {
+  comments?: number
+  downloads?: number
+  favorites?: number
+  id: number
+  imageHeight?: number
+  imageSize?: number
+  imageWidth?: number
+  largeImageURL: string
+  likes: number
+  pageURL: string
+  previewHeight: number
+  previewURL: number
+  previewWidth: number
+  tags: string
+  type: string
+  user: string
+  userImageURL: string
+  user_id: number
+  views: number
+  webformatHeight: number
+  webformatURL: string
+  webformatWidth: number
+}
+
+@Component({
+  selector: &#x27;app-list&#x27;,
+  templateUrl: &#x27;./list.component.html&#x27;,
+  styleUrls: [&#x27;./list.component.scss&#x27;]
 })
+export class ListComponent implements OnInit {
+  /**
+  * variable que interpola los valores de la búsqueda de imágenes.
+  */
+  searchItem: string
+  /**
+  * variable que muestra los valores del observable del servicio de imágenes.
+  */
+  listImages: any;
+  /**
+  * Array del dropdown de categorias.
+  */
+  categoryImage: any[] &#x3D; [
+    { name: &#x27;science&#x27; },
+    { name: &#x27;education&#x27; },
+    { name: &#x27;people&#x27; },
+    { name: &#x27;feelings&#x27; },
+    { name: &#x27;computer&#x27; },
+    { name: &#x27;buildings&#x27; },
+  ]
+  /**
+  * variable que guarda los valores preseleccionados del dropdown de categoria.
+  */
+  categoryItem: string;
+  /**
+  * variable que guarda todos los valores seleccionados en el dropdown de categoria.
+  */
+  selectedValue: string;
+  constructor(private dataService: DataService) { }
 
-export class DataService {
-  /**
-    * Observable que muestra todos los hits o imágenes.
-  */
-  private _hits &#x3D; new BehaviorSubject&lt;any[]&gt;([]);
-   /**
-    * Observable que muestra el detalle de los hits o imágenes.
-  */
-  private _singleHit &#x3D; new BehaviorSubject&lt;any[]&gt;([]);
-   /**
-    *  Variable que arma el ENDPOINT.
-  */
-  private baseUrl &#x3D; &#x27;https://pixabay.com/api/?key&#x3D;13119377-fc7e10c6305a7de49da6ecb25&amp;lang&#x3D;es&amp;image_type&#x3D;photo&#x27;;
-  /**
-    * array para la data de los hits o imágenes.
-  */
-  private dataImages: { hitsImages: any[] } &#x3D; { hitsImages: [] }
-  /**
-    * array para la data de los detalles del hit o imagen.
-  */
-  private dataImage: { singleImage: any[] } &#x3D; { singleImage: [] }
-  readonly hits &#x3D; this._hits.asObservable();
-  readonly singleHit &#x3D; this._singleHit.asObservable();
-  completeItem: string;
-  completeCategory: string;
-  constructor(private http: HttpClient) {
-
-  }
-  /**
-   * Observable Valor de la listade imágenes
-  */
-  get listImage() {
-    return this._hits.asObservable();
-  }
-  /**
-   * Observable Valor del detalle de la imagen
-  */
-  get detailImage() {
-    return this._singleHit.asObservable();
-  }
-  /**
-   * Este es el método que lista todos las imágenes inicialmente.
-   * @param {string} dataImages observable que muestra la lista {@link idImage}
-   * @returns Retorna un observable.
+  ngOnInit(): void {
+    /**
+    * función que llama la lista completa de imágenes.
     */
-  getList() {
-    this.http.get(&#x60;${this.baseUrl}&#x60;).subscribe(
-      (data: ImagesData) &#x3D;&gt; {
-        this.dataImages.hitsImages &#x3D; data.hits
-        this._hits.next(Object.assign({}, this.dataImages).hitsImages);
+    this.dataService.getList()
+    this.listImages &#x3D; this.dataService.listImage;
 
-      },
-      error &#x3D;&gt; console.log(&#x27;Could not load todos.&#x27;)
-
-    )
-    return this.dataImages.hitsImages
+  }
+  /**
+    * Método que se dispara cuando buscas en el input, con el criterio q&#x3D;&quot;$string&quot;, y category.
+   */
+  searchImages(item, categoryItem) {
+    console.log(item, categoryItem)
+    this.dataService.searchImages(item, categoryItem);
+    this.listImages &#x3D; this.dataService.listImage
   }
 
   /**
-   * Método que valida si los parámetros son null o indefinidos y permite construir el endpoint 
-   */
-  validationValue(item: string, category: string) {
-    if (item &#x3D;&#x3D; undefined || item &#x3D;&#x3D; null) {
-      this.completeItem &#x3D; &#x27;&#x27;
-    } else {
-      this.completeItem &#x3D; &#x60;&amp;q&#x3D;${item}&#x60;
-    }
-    if (category &#x3D;&#x3D; undefined || category &#x3D;&#x3D; null) {
-      this.completeCategory &#x3D; &#x27;&#x27;
-    } else {
-      this.completeCategory &#x3D; &#x60;&amp;category&#x3D;${category}&#x60;
-    }
-  }
-  /**
-   * Método que permite buscar imágenes por su nombre y categoria
-   */
-  searchImages(item: string, category: string) {
-    this.validationValue(item, category)
-    this.http.get(&#x60;${this.baseUrl}${this.completeItem}${this.completeCategory}&#x60;)
-      .subscribe(
-        (data: ImagesData) &#x3D;&gt; {
-          this.dataImages.hitsImages &#x3D; data.hits
-          this._hits.next(Object.assign({}, this.dataImages).hitsImages);
-
-        },
-        error &#x3D;&gt; console.log(&#x27;No hay imágenes.&#x27;)
-
-      )
-    return this.dataImages.hitsImages
+   * Método que se dispara cuando abres o cierras el Dropdown de categoria y busca por ese mismo criterio.
+  */
+  methodToggle(categoryItem) {
+    console.log(&quot;oli&quot;, categoryItem)
+    this.dataService.toggleCategory(categoryItem)
+    this.listImages &#x3D; this.dataService.listImage
+    this.searchItem &#x3D; &#x27;&#x27;
   }
 
-  /**
-   * Método que permite buscar imágenes por su categoria, en el evento toggle
-   */
-  toggleCategory(category: string) {
-    this.http.get(&#x60;${this.baseUrl}&amp;category&#x3D;${category}&#x60;)
-      .subscribe(
-        (data: ImagesData) &#x3D;&gt; {
-          this.dataImages.hitsImages &#x3D; data.hits
-          this._hits.next(Object.assign({}, this.dataImages).hitsImages);
-
-        },
-        error &#x3D;&gt; console.log(&#x27;No hay imágenes.&#x27;)
-
-      )
-    return this.dataImages.hitsImages
-  }
-
-  /**
-   * Método que permite obtener el detalle de una imagen, por medio de un ID.
-   */
-  getDetailImage(id: string) {
-    this.http.get(&#x60;${this.baseUrl}&amp;id&#x3D;${id}&#x60;)
-      .subscribe(
-        (data: ImagesData) &#x3D;&gt; {
-          this.dataImage.singleImage &#x3D; data.hits
-          this._singleHit.next(Object.assign({}, this.dataImage).singleImage);
-
-        },
-        error &#x3D;&gt; console.log(&#x27;No hay imágenes.&#x27;)
-
-      )
-    return this.dataImage.singleImage
-  }
 }
 </code></pre>
     </div>
