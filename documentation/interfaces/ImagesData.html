@@ -1,0 +1,358 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>intel-cost documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">intel-cost documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>ImagesData</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/data.service.ts</code>
+        </p>
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#hits">hits</a>
+                                </li>
+                                <li>
+                                        <a href="#total">total</a>
+                                </li>
+                                <li>
+                                        <a href="#totalHits">totalHits</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="hits"></a>
+                                        <span class="name"><b>hits</b><a href="#hits"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>hits:     <code>any[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>any[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="total"></a>
+                                        <span class="name"><b>total</b><a href="#total"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>total:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="totalHits"></a>
+                                        <span class="name"><b>totalHits</b><a href="#totalHits"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>totalHits:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { tap, map, filter } from &#x27;rxjs/operators&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
+interface ImagesData {
+  hits: any[];
+  total: number;
+  totalHits: number;
+}
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+
+export class DataService {
+  private _hits &#x3D; new BehaviorSubject&lt;any[]&gt;([]);
+  private _singleHit &#x3D; new BehaviorSubject&lt;any[]&gt;([]);
+  private baseUrl &#x3D; &#x27;https://pixabay.com/api/?key&#x3D;13119377-fc7e10c6305a7de49da6ecb25&amp;lang&#x3D;es&amp;image_type&#x3D;photo&#x27;;
+  private dataImages: { hitsImages: any[] } &#x3D; { hitsImages: [] }
+  private dataImage: { singleImage: any[] } &#x3D; { singleImage: [] }
+  readonly hits &#x3D; this._hits.asObservable();
+  readonly singleHit &#x3D; this._singleHit.asObservable();
+  completeItem: string;
+  completeCategory: string;
+  constructor(private http: HttpClient) {
+
+  }
+  /**
+   * Observable Valor de la listade imágenes
+  */
+  get listImage() {
+    return this._hits.asObservable();
+  }
+  /**
+   * Observable Valor del detalle de la imagen
+  */
+  get detailImage() {
+    return this._singleHit.asObservable();
+  }
+  /**
+   * Este es el método que lista todos las imágenes inicialmente.
+   * @param {string} dataImages observable que muestra la lista {@link idImage}
+   * @returns Retorna un observable.
+    */
+  getList() {
+    this.http.get(&#x60;${this.baseUrl}&#x60;).subscribe(
+      (data: ImagesData) &#x3D;&gt; {
+        this.dataImages.hitsImages &#x3D; data.hits
+        this._hits.next(Object.assign({}, this.dataImages).hitsImages);
+
+      },
+      error &#x3D;&gt; console.log(&#x27;Could not load todos.&#x27;)
+
+    )
+    return this.dataImages.hitsImages
+    // return this.http.get(&#x27;https://pixabay.com/api/?key&#x3D;13119377-fc7e10c6305a7de49da6ecb25&amp;lang&#x3D;es&amp;image_type&#x3D;photo&#x27;)
+  }
+
+  /**
+   * Método que valida si los parámetros son null o indefinidos y permite construir el endpoint 
+   */
+  validationValue(item: string, category: string) {
+    if (item &#x3D;&#x3D; undefined || item &#x3D;&#x3D; null) {
+      this.completeItem &#x3D; &#x27;&#x27;
+    } else {
+      this.completeItem &#x3D; &#x60;&amp;q&#x3D;${item}&#x60;
+    }
+    if (category &#x3D;&#x3D; undefined || category &#x3D;&#x3D; null) {
+      this.completeCategory &#x3D; &#x27;&#x27;
+    } else {
+      this.completeCategory &#x3D; &#x60;&amp;category&#x3D;${category}&#x60;
+    }
+  }
+  /**
+   * Método que permite buscar imágenes por su nombre y categoria
+   */
+  searchImages(item: string, category: string) {
+    this.validationValue(item, category)
+    this.http.get(&#x60;${this.baseUrl}${this.completeItem}${this.completeCategory}&#x60;)
+      .subscribe(
+        (data: ImagesData) &#x3D;&gt; {
+          this.dataImages.hitsImages &#x3D; data.hits
+          this._hits.next(Object.assign({}, this.dataImages).hitsImages);
+
+        },
+        error &#x3D;&gt; console.log(&#x27;No hay imágenes.&#x27;)
+
+      )
+    return this.dataImages.hitsImages
+  }
+  /**
+   * Método que permite obtener el detalle de una imagen, por medio de un ID.
+   */
+  getDetailImage(id: string) {
+    this.http.get(&#x60;${this.baseUrl}&amp;id&#x3D;${id}&#x60;)
+      .subscribe(
+        (data: ImagesData) &#x3D;&gt; {
+          this.dataImage.singleImage &#x3D; data.hits
+          this._singleHit.next(Object.assign({}, this.dataImage).singleImage);
+
+        },
+        error &#x3D;&gt; console.log(&#x27;No hay imágenes.&#x27;)
+
+      )
+    return this.dataImage.singleImage
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ImagesData.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

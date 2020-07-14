@@ -1,0 +1,19 @@
+<div class="goBack container-fluid">
+    <button routerLink="/listImages" type="button" class="btn btn-light">Volver</button>
+</div>
+<div class="container-fluid">
+    <div class="row paddingListCard">
+        <div class="card col-sm-12 col-xs-6" *ngFor="let image of itemImage | async">
+            <img src="{{image.largeImageURL}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><p class="bold m-r">Id:</p>{{image.id}}</li>
+                    <li class="list-group-item"><p class="bold m-r">Tags:</p>{{image.tags}}</li>
+                    <li class="list-group-item"><p class="bold m-r">Cantidad de vistas:</p>{{image.views}}</li>
+                    <li class="list-group-item"><p class="bold m-r">Likes: </p>{{image.likes}}</li>
+                    <li class="list-group-item"><p class="bold m-r">URL: </p><a target="_blank" href="{{image.pageURL}}">{{image.pageURL}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

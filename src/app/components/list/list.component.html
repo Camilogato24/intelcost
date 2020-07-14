@@ -1,0 +1,51 @@
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column searchBack">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">
+                <img src="../../../assets/logo.png">
+            </h3>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Buscador de imágenes.</h1>
+        <div class="input-group mb-3">
+            <div  ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>{{ selectedValue.value || 'Categoría'}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" #selectedValue>
+                    <button 
+                        ngDefaultControl 
+                        name="categoryItem" 
+                        [(ngModel)]="categoryItem" 
+                        *ngFor="let category of categoryImage" 
+                        (click)="selectedValue.value=category.name"
+                        ngbDropdownItem>
+                        {{category.name}}
+                    </button>
+                </div>
+            </div>
+            <input ngDefaultControl [(ngModel)]="searchItem" type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-append">
+                <button
+                    name="searchItem"
+                    (click)="searchImages(searchItem, selectedValue.value)" 
+                    class="btn btn-outline-secondary" 
+                    type="button"
+                    id="button-addon2">Buscar
+                </button>
+              </div>
+        </div>
+    </main>
+</div>
+<div class="container">
+    <div class="row paddingListCard">
+        <div class="card col-sm-4 col-xs-6" *ngFor="let image of listImages | async">
+            <img src="{{image.webformatURL}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"> {{image.type}}</h5>
+                <p class="card-text">{{image.tags}}</p>
+                <a [routerLink]="['/detailImages', image.id]" class="btn btn-primary">Detalle</a>
+            </div>
+        </div>
+    </div>
+</div>
